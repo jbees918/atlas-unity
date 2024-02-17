@@ -1,1 +1,1 @@
-Atlas AR/VR Unity Assets, Models and Textures
+Atlas AR/VR - Unity Assets, Models and Textures
