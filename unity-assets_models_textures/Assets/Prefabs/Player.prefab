@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7979438930202892435}
   - component: {fileID: 6341711902329031177}
   - component: {fileID: 6717535799683099894}
-  - component: {fileID: 5035354119414954432}
   - component: {fileID: 1527924937702036214}
   - component: {fileID: -8469205098529603341}
   m_Layer: 0
@@ -86,29 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5035354119414954432
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7253469475712028803}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1527924937702036214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,11 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70af784081dd8624aafefcbc29a7752f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 5
-  startPosition: {fileID: 0}
-  respawnHeight: -10
-  respawnOffset: 2
+  moveSpeed: 232
+  jumpSpeed: 5
+  gravity: 20
 --- !u!143 &-8469205098529603341
 CharacterController:
   m_ObjectHideFlags: 0
@@ -145,10 +119,10 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1.8
+  m_Radius: 0.6
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.06
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
