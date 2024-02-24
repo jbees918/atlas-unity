@@ -11,9 +11,12 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
 
+    private Vector3 startPosition;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        startPosition = transform.position;
     }
 
     void Movement()
@@ -44,5 +47,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
+        if (transform.position.y < -30)
+        {
+            ResetPosition();
+        }
+    }
+
+    private void ResetPosition()
+    {
+        transform.position = startPosition;
+        moveDirection.y =  0;
     }
 }

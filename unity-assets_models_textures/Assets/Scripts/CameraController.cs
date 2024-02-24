@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -7,16 +5,17 @@ public class CameraController : MonoBehaviour
     public Transform target; // Player's transform
     public float followSpeed = 5f; // Speed at which the camera follows the player
     public float rotationSpeed = 2f; // Speed of camera rotation
+    public float smoothTime = 0.3f; // Smooth time for SmoothDamp
+    public float maxDistance = Mathf.Infinity; // Maximum distance for ClampMagnitude
 
     private Vector3 offset; // Offset between camera and player
+    private Vector3 velocity = Vector3.zero; // Velocity reference for SmoothDamp
 
-    // Start is called before the first frame update
     void Start()
     {
         offset = transform.position - target.position; // Calculate initial offset
     }
 
-    // Update is called once per frame
     void Update()
     {
         FollowPlayer(); // Call method to follow player
@@ -25,13 +24,9 @@ public class CameraController : MonoBehaviour
 
     void FollowPlayer()
     {
-        Debug.Log("Following player"); // Check if method is being called
         Vector3 targetPosition = target.position + offset; // Calculate target position for camera
-        Debug.Log("Target Position: " + targetPosition); // Log target position
-        transform.position =
-            Vector3.Lerp(transform.position, targetPosition,
-                followSpeed * Time.deltaTime); // Smoothly move camera towards target position
-        
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime); // Smoothly move camera towards target position
+        transform.position = Vector3.ClampMagnitude(transform.position, maxDistance); // Clamp camera position to prevent overshooting
     }
 
     void RotateCamera()
