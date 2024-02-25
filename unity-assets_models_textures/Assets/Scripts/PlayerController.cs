@@ -7,6 +7,13 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpSpeed = 8f;
     public float gravity = 20f;
+    
+    IEnumerator RespawnPlayer()
+    {
+        yield return new WaitForSeconds(0.01f); // Adjust the delay as needed
+        transform.position = startPosition + Vector3.up * 76f;
+        moveDirection = Vector3.zero;
+    }
 
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
@@ -55,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     private void ResetPosition()
     {
-        transform.position = startPosition;
-        moveDirection.y =  0;
+        moveDirection.y =  0f;
+        StartCoroutine(RespawnPlayer());
     }
 }
