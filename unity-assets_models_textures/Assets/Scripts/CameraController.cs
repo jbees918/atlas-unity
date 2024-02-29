@@ -8,11 +8,13 @@ public class CameraController : MonoBehaviour
     public float followSpeed = 5f; // Speed at which the camera follows the player
     public float rotationSpeed = 2f; // Speed of camera rotation
     
-    public Vector3 offset; // Offset between camera and player
-    public Vector3 velocity = Vector3.zero; // Velocity reference
+    public Vector3 offset; // Offset between cam and player
+    public Vector3 velocity = Vector3.zero; // Velocity
+    
+    private Vector3 forwardDirection; // Forward direction of  cam
     void Start()
     {
-      //  offset = transform.position - target.position; // Calculate initial offset
+      //  offset = transform.position - target.position; // Calculates initial offset
     }
 
     void LateUpdate()
@@ -24,6 +26,8 @@ public class CameraController : MonoBehaviour
 
     void Rotate()
     {
-        offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * rotationSpeed, Vector3.up) * offset;
+        float mouseX = Input.GetAxis("Mouse X") * rotationSpeed;
+        Quaternion horizontalRotation = Quaternion.AngleAxis(mouseX, Vector3.up);
+        offset = horizontalRotation * offset;
     }
 }

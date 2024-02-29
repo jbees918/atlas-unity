@@ -7,16 +7,14 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpSpeed = 8f;
     public float gravity = 20f;
-    
-    IEnumerator RespawnPlayer()
-    {
-        yield return new WaitForSeconds(0.01f); // Adjust the delay as needed
-        transform.position = startPosition + Vector3.up * 76f;
-        moveDirection = Vector3.zero;
-    }
+    public Timer timerScript;
+    public float rotationSpeed = 4f;
 
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
+    
+    private Camera mainCamera; // Reference to the main camera
+    private Vector3 forwardDirection; // Forward direction of the camera
 
     private Vector3 startPosition;
 
@@ -24,6 +22,9 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         startPosition = transform.position;
+        timerScript.enabled = false;
+        
+        mainCamera = Camera.main;
     }
 
     void Movement()
@@ -50,10 +51,34 @@ public class PlayerController : MonoBehaviour
         // Apply movement and grav
         characterController.Move(movement * Time.deltaTime + moveDirection * Time.deltaTime);
     }
+    
+    void RotatePlayer(Vector3 forwardDirection)
+    {
+        // Rotate the player to face the camera's forward direction
+        if (forwardDirection != Vector3.zero)
+        {
+            Vector3 horizontalForward = Vector3.ProjectOnPlane(forwardDirection, Vector3.up).normalized;
+            Quaternion newRotation = Quaternion.LookRotation(horizontalForward);
+            Debug.Log("New Rotation: " + newRotation.eulerAngles);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotationSpeed);
+        }
+    }
 
     void Update()
     {
         Movement();
+        
+        // Get the forward direction of the main camera
+        if (mainCamera != null)
+        {
+            forwardDirection = mainCamera.transform.forward;
+            RotatePlayer(forwardDirection); // Rotate the player based on the camera's forward direction
+        }
+        
+        if (Input.GetAxis("Vertical") > 0 && !timerScript.enabled)
+        {
+            timerScript.enabled = true;
+        }
         if (transform.position.y < -30)
         {
             ResetPosition();
@@ -64,5 +89,12 @@ public class PlayerController : MonoBehaviour
     {
         moveDirection.y =  0f;
         StartCoroutine(RespawnPlayer());
+    }
+    
+    IEnumerator RespawnPlayer()
+    {
+        yield return new WaitForSeconds(0.01f); // Adjust the delay as needed
+        transform.position = startPosition + Vector3.up * 76f;
+        moveDirection = Vector3.zero;
     }
 }
