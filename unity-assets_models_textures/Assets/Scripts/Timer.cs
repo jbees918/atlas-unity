@@ -5,21 +5,23 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+    // public GameObject timerTextGameObject; // Reference to the TimerText GameObject
+    
     public Text TimerText;
     public float startTime;
-    public bool timerRunning;
     // Start is called before the first frame update
     void Start()
     {
         startTime = Time.time;
-        timerRunning = true;
+        if (TimerText == null)
+        {
+            Debug.LogError("Timer text is not assigned");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timerRunning)
-        {
             float elapsedTime = Time.time - startTime;
 
             // Formatting time into minutes, seconds, and milliseconds
@@ -29,11 +31,9 @@ public class Timer : MonoBehaviour
 
             // Update the timer text
             TimerText.text = minutes + ":" + seconds + "." + milliseconds;
-        }
     } 
     public void StartTimer()
     {
         startTime = Time.time;
-        timerRunning = true;
     }
 }

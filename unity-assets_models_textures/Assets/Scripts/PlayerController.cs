@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpSpeed = 8f;
     public float gravity = 20f;
-    public Timer timerScript;
     public float rotationSpeed = 4f;
 
     private CharacterController characterController;
@@ -22,7 +21,6 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         startPosition = transform.position;
-        timerScript.enabled = false;
         
         mainCamera = Camera.main;
     }
@@ -59,7 +57,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 horizontalForward = Vector3.ProjectOnPlane(forwardDirection, Vector3.up).normalized;
             Quaternion newRotation = Quaternion.LookRotation(horizontalForward);
-            Debug.Log("New Rotation: " + newRotation.eulerAngles);
+            // Debug.Log("New Rotation: " + newRotation.eulerAngles);
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotationSpeed);
         }
     }
@@ -75,10 +73,6 @@ public class PlayerController : MonoBehaviour
             RotatePlayer(forwardDirection); // Rotate the player based on the camera's forward direction
         }
         
-        if (Input.GetAxis("Vertical") > 0 && !timerScript.enabled)
-        {
-            timerScript.enabled = true;
-        }
         if (transform.position.y < -30)
         {
             ResetPosition();
