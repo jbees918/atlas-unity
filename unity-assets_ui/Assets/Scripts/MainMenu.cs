@@ -1,31 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    // Start is called before the first frame update
     public void LevelSelect(int level)
     {
-        SceneManager.LoadScene("Level0" + level);
-    }
-    public void LoadLevel1()
-    {
-        SceneManager.LoadScene("level101");
+        SceneManager.LoadScene(level);
     }
 
-    public void LoadLevel2()
+    public void OptionsButton()
     {
-        SceneManager.LoadScene("level102");
-    }
-
-    public void LoadLevel3()
-    {
-        SceneManager.LoadScene("level103");
-    }
-
-    public void Options()
-    {
+        PlayerPrefs.SetString("previous-scene", SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("Options");
+    }
+
+    public void ExitButton()
+    {
+        Debug.Log("Exited");
+        Application.Quit();
     }
 }
