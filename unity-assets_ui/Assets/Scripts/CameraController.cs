@@ -8,6 +8,8 @@ public class CameraController : MonoBehaviour
     public float followSpeed = 5f; // Speed at which the camera follows the player
     public float rotationSpeed = 2f; // Speed of camera rotation
     
+    public bool isInverted;
+    
     public Vector3 offset; // Offset between cam and player
     public Vector3 velocity = Vector3.zero; // Velocity
     
@@ -19,6 +21,8 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
+        float mouseY = isInverted ? -Input.GetAxis("Mouse Y") : Input.GetAxis("Mouse Y");
+
         Rotate();
        transform.position = player.position + offset;
        transform.LookAt(player.transform.position);
