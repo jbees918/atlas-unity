@@ -7270,6 +7270,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2200077867988858053, guid: 1a07cfd402d615a49a6f7033b1f9ebf4, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200077867988858053, guid: 1a07cfd402d615a49a6f7033b1f9ebf4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8440510077267459181, guid: 97d47089170550a4c90e9e44711fcc4f, type: 3}
+    - target: {fileID: 8261736168693564148, guid: 1a07cfd402d615a49a6f7033b1f9ebf4, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8261736168693564148, guid: 1a07cfd402d615a49a6f7033b1f9ebf4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8440510077267459181, guid: 97d47089170550a4c90e9e44711fcc4f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
