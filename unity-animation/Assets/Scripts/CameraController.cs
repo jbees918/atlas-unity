@@ -16,11 +16,19 @@ public class CameraController : MonoBehaviour
     private Vector3 forwardDirection; // Forward direction of  cam
     void Start()
     {
-      //  offset = transform.position - target.position; // Calculates initial offset
+        offset = transform.position - player.position; // Calculate initial offset
     }
 
     void LateUpdate()
     {
+        // Calculate new position for camera based on player position and offset
+        Vector3 newPosition = player.position + offset;
+
+        // cams position to new position
+        transform.position = Vector3.Lerp(transform.position, newPosition, followSpeed * Time.deltaTime); // Line 21
+
+        // cam always look at player
+        transform.LookAt(player.position); // Line 22
         float mouseY = isInverted ? -Input.GetAxis("Mouse Y") : Input.GetAxis("Mouse Y");
 
         Rotate();

@@ -271,7 +271,7 @@ Transform:
   m_GameObject: {fileID: 11306757}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.007468057, z: -0, w: 0.9999721}
-  m_LocalPosition: {x: -0.5, y: 2.68, z: 47.3}
+  m_LocalPosition: {x: 0, y: 2, z: 47.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1380,6 +1380,39 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2769451611078497753, guid: 764b144cd23d1614c8969bf3674f91f6, type: 3}
+--- !u!1 &511584353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5375822835215101231, guid: 33514cf530f74a9438cadb9a883cf32e, type: 3}
+  m_PrefabInstance: {fileID: 3585612868132018391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &511584355
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511584353}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 22127e5f67355544f84e4b106976f1b1, type: 3}
+  m_Controller: {fileID: 9100000, guid: 1a780644d166ff44eb039bde1fae1c95, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Boy:Hips'\n\tTransform 'Boy:LeftArm'\n\tTransform
+    'Boy:RightHandRing1'\n\tTransform 'Boy:RightHandThumb1'\n\tTransform 'Boy:LeftHandRing2'\n\tTransform
+    'Boy:Head'\n\tTransform 'Boy:LeftHandPinky2'\n\tTransform 'Boy:RightHandIndex2'\n\tTransform
+    'Boy:RightArm'\n\tTransform 'Boy:RightUpLeg'\n\tand more ...\n\tFrom animation
+    clip 'Running'"
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &513518238 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d42f866470637094b95eee4916b5ab18, type: 3}
@@ -7073,7 +7106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1527924937702036214, guid: 33514cf530f74a9438cadb9a883cf32e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1527924937702036214, guid: 33514cf530f74a9438cadb9a883cf32e, type: 3}
       propertyPath: moveSpeed
@@ -7087,6 +7120,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6717535799683099894, guid: 33514cf530f74a9438cadb9a883cf32e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 893f66b0513309b4989ee0621fa9b9f4, type: 2}
     - target: {fileID: 7253469475712028803, guid: 33514cf530f74a9438cadb9a883cf32e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -7101,7 +7138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7979438930202892435, guid: 33514cf530f74a9438cadb9a883cf32e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.25
+      value: 0.228
       objectReference: {fileID: 0}
     - target: {fileID: 7979438930202892435, guid: 33514cf530f74a9438cadb9a883cf32e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7136,9 +7173,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2581001190191250108, guid: 33514cf530f74a9438cadb9a883cf32e, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5375822835215101231, guid: 33514cf530f74a9438cadb9a883cf32e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 511584355}
   m_SourcePrefab: {fileID: 100100000, guid: 33514cf530f74a9438cadb9a883cf32e, type: 3}
 --- !u!1001 &7784162756412604521
 PrefabInstance:
