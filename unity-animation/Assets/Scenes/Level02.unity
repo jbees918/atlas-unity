@@ -6027,12 +6027,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d093ce9b46301114e89ffc9d2dc6ee78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1063974842}
-  target: {fileID: 1673317101}
-  followSpeed: 80
-  rotationSpeed: 3
-  offset: {x: 0, y: 2, z: -6}
-  velocity: {x: 0, y: 0, z: 0}
+  myCamera: {fileID: 0}
+  ySpeed: -0.01
+  xSpeed: 1
+  isInverted: 0
 --- !u!1 &1676574027
 GameObject:
   m_ObjectHideFlags: 0
@@ -8894,15 +8892,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7979438930202892435, guid: 33514cf530f74a9438cadb9a883cf32e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.46
+      value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7979438930202892435, guid: 33514cf530f74a9438cadb9a883cf32e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.25
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 7979438930202892435, guid: 33514cf530f74a9438cadb9a883cf32e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 50.6
+      value: -0.41
       objectReference: {fileID: 0}
     - target: {fileID: 7979438930202892435, guid: 33514cf530f74a9438cadb9a883cf32e, type: 3}
       propertyPath: m_LocalRotation.w
