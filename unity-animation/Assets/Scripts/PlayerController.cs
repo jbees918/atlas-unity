@@ -1,9 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Animator animator; // Assign in inspector
+    public Transform orientation;
+    public Transform player;
+    public Transform playerObj;
+    public Rigidbody rb;
+    
     public float moveSpeed = 5f;
     public float jumpSpeed = 8f;
     public float gravity = 20f;
@@ -21,7 +28,6 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         startPosition = transform.position;
-        
         mainCamera = Camera.main;
     }
 
@@ -29,25 +35,36 @@ public class PlayerController : MonoBehaviour
     {
         float horizontalMovement = Input.GetAxis("Horizontal");
         float verticalMovement = Input.GetAxis("Vertical");
+        
+        Vector3 targetDirection = new Vector3(horizontalMovement, 0f, verticalMovement).normalized;
+        Vector3 currentDirection = new Vector3(moveDirection.x, 0f, moveDirection.z).normalized;
 
-        Vector3 movement = new Vector3(horizontalMovement, 0f, verticalMovement);
-        movement = transform.TransformDirection(movement);
-        movement *= moveSpeed;
+        // Smoothly interpolate between the current direction and the target direction
+        Vector3 smoothDirection = Vector3.Lerp(currentDirection, targetDirection, Time.deltaTime * rotationSpeed);
 
-        if (characterController.isGrounded) // Check if player is grounded
+        // Calculate the final movement vector based on the smoothed direction and move speed
+        Vector3 movement = smoothDirection * moveSpeed;
+
+        // Adjust moveDirection for gravity and apply jump logic if needed
+        if (characterController.isGrounded)
         {
-            // apply jump
+            moveDirection = new Vector3(movement.x, moveDirection.y, movement.z);
             if (Input.GetButtonDown("Jump"))
             {
                 moveDirection.y = jumpSpeed;
             }
         }
+        else
+        {
+            moveDirection.x = movement.x;
+            moveDirection.z = movement.z;
+        }
 
         // Apply gravity
         moveDirection.y -= gravity * Time.deltaTime;
 
-        // Apply movement and grav
-        characterController.Move(movement * Time.deltaTime + moveDirection * Time.deltaTime);
+        // Move the character controller
+        characterController.Move(moveDirection * Time.deltaTime);
     }
     
     void RotatePlayer(Vector3 forwardDirection)
@@ -57,7 +74,6 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 horizontalForward = Vector3.ProjectOnPlane(forwardDirection, Vector3.up).normalized;
             Quaternion newRotation = Quaternion.LookRotation(horizontalForward);
-            // Debug.Log("New Rotation: " + newRotation.eulerAngles);
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotationSpeed);
         }
     }
@@ -65,6 +81,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Movement();
+        HandleAnimation();
         
         // Get the forward direction of the main camera
         if (mainCamera != null)
@@ -78,10 +95,29 @@ public class PlayerController : MonoBehaviour
             ResetPosition();
         }
     }
+    
+    void HandleAnimation()
+    {
+        // Get input from arrow keys or WASD
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
+        // Determine the direction and set the Animator parameters
+        if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
+        {
+            animator.SetFloat("MoveX", horizontal);
+            animator.SetFloat("MoveY", 0);
+        }
+        else
+        {
+            animator.SetFloat("MoveX", 0);
+            animator.SetFloat("MoveY", vertical);
+        }
+    }
 
     private void ResetPosition()
     {
-        moveDirection.y =  0f;
+        moveDirection.y = 0f;
         StartCoroutine(RespawnPlayer());
     }
     
