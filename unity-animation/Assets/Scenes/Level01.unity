@@ -7008,6 +7008,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1183647471391769188, guid: 39b03002791a9ab419ac9ddf63788ee5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2126571111441880478, guid: 39b03002791a9ab419ac9ddf63788ee5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7107,7 +7111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 651839145116126511, guid: 3e92883268a86bf448c66b5312683723, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1357959044495232356, guid: 3e92883268a86bf448c66b5312683723, type: 3}
       propertyPath: m_ReferenceResolution.x
@@ -8237,6 +8241,10 @@ PrefabInstance:
     - target: {fileID: 1499028338109214065, guid: 1a07cfd402d615a49a6f7033b1f9ebf4, type: 3}
       propertyPath: m_Name
       value: WinCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499028338109214065, guid: 1a07cfd402d615a49a6f7033b1f9ebf4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2200077867988858053, guid: 1a07cfd402d615a49a6f7033b1f9ebf4, type: 3}
       propertyPath: m_Type
